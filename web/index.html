@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clasificador de Imágenes CNN</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div class="container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <h2>Clasificador CNN</h2>
+            <nav>
+                <ul>
+                    <li><button class="nav-button active" data-section="training">Entrenamiento</button></li>
+                    <li><button class="nav-button" data-section="prediction">Predicción</button></li>
+                    <li><button class="nav-button" data-section="video">Predicción por Video</button></li>
+                </ul>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Training Section -->
+            <section id="training" class="content-section active">
+                <h1>Entrenamiento del Modelo</h1>
+                <div class="upload-container">
+                    <p>Seleccione la carpeta con las imágenes de entrenamiento</p>
+                    <input type="file" id="training-folder" webkitdirectory directory multiple>
+                    <button id="train-button" class="primary-button">Entrenar Modelo</button>
+                </div>
+                <div id="training-progress" class="hidden">
+                    <div class="progress-bar">
+                        <div class="progress"></div>
+                    </div>
+                    <p class="progress-text">Progreso: 0%</p>
+                </div>
+                <div id="training-results" class="hidden">
+                    <canvas id="training-chart"></canvas>
+                </div>
+            </section>
+
+            <!-- Prediction Section -->
+            <section id="prediction" class="content-section">
+                <h1>Predicción</h1>
+                <div class="upload-container">
+                    <p>Cargar imagen para predicción</p>
+                    <input type="file" id="image-upload" accept="image/*">
+                    <div id="preview-container" class="hidden">
+                        <img id="image-preview" alt="Preview">
+                    </div>
+                </div>
+                <div id="prediction-results" class="hidden">
+                    <h2>Resultados de la predicción:</h2>
+                    <p id="predicted-class"></p>
+                    <p id="confidence"></p>
+                    <canvas id="probability-chart"></canvas>
+                </div>
+            </section>
+
+            <!-- Video Prediction Section -->
+            <section id="video" class="content-section">
+                <h1>Predicción por Video</h1>
+                <div class="upload-container">
+                    <p>Cargar video para predicción</p>
+                    <input type="file" id="video-upload" accept="video/*">
+                    <div id="video-container" class="hidden">
+                        <video id="video-preview" controls></video>
+                        <input type="range" id="frame-slider" min="0" max="100" value="0">
+                        <p id="frame-info">Frame: 0/0</p>
+                    </div>
+                </div>
+                <div id="video-prediction-results" class="hidden">
+                    <canvas id="video-probability-chart"></canvas>
+                </div>
+            </section>
+        </main>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
